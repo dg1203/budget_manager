@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import EmptyPage from "../../components/EmptyPage";
 
 const Home = () => {
-  const { jars } = useSelector(state => state.jars);
+  const { jars } = useSelector(state => state);
   return jars.length === 0 ? <EmptyPage /> : <h1>NotEmpty</h1>;
 };
 

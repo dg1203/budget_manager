@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import PlusOneIcon from "@material-ui/icons/PlusOne";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,9 +28,11 @@ const EmptyPage = () => {
       <Typography gutterBottom variant="h5" component="h2">
         Lista jest pusta. Stwórz swój pierwszy słoik.
       </Typography>
-      <Button variant="contained" color="primary" endIcon={<PlusOneIcon />}>
-        Dodaj
-      </Button>
+      <Link to="/jar/add">
+        <Button variant="contained" color="primary" endIcon={<PlusOneIcon />}>
+          Dodaj
+        </Button>
+      </Link>
     </div>
   );
 };

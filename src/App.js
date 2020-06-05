@@ -5,18 +5,20 @@ import { Container } from "@material-ui/core";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import AddJar from "./pages/AddJar";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Container maxWidth="lg">
-        <Router>
+      <Router>
+        <Header />
+        <Container maxWidth="lg" style={{ padding: "50px 15px" }}>
           <Switch>
-            <Route path="/" component={Home} />
+            <Route path="/" component={Home} exact />
+            <Route path="/jar/add" component={AddJar} exact />
           </Switch>
-        </Router>
-      </Container>
+        </Container>
+      </Router>
     </div>
   );
 }

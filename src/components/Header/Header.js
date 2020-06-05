@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -19,7 +20,9 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">Zarządzanie budżetem</Typography>
+          <Link to="/">
+            <Typography variant="h6">Zarządzanie budżetem</Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </>

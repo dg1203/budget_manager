@@ -1,3 +1,4 @@
 import Menu from "./Menu";
+import { withRouter } from "react-router";
 
-export default Menu;
+export default withRouter(Menu);

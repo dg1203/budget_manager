@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import AddJar from "./pages/AddJar";
+import Jar from "./pages/Jar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/jar/add" component={AddJar} exact />
+            <Route path="/jar/edit/:id" component={Jar} exact />
           </Switch>
         </Container>
       </Router>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import {
   TextField,
   Grid,
@@ -8,22 +9,26 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  Button
+  Button,
+  FormControlLabel,
+  Checkbox,
+  Tooltip
 } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import { addJar } from "../../actions/stateActions";
 
-const AddJar = () => {
+const AddJar = ({ history }) => {
   const dispatch = useDispatch();
   const [jar, setJar] = useState({
     name: "",
     description: "",
-    currency: ""
+    currency: "",
+    isDefault: false
   });
   const saveJar = event => {
     event.preventDefault();
-    console.log(jar);
     dispatch(addJar(jar));
+    history.push("/");
   };
   return (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -58,7 +63,6 @@ const AddJar = () => {
           <Select
             onChange={event => setJar({ ...jar, currency: event.target.value })}
             value={jar.currency}
-            label="Age"
           >
             <MenuItem value="">
               <em>Brak</em>
@@ -69,6 +73,25 @@ const AddJar = () => {
             <MenuItem value="GBP">Funt</MenuItem>
             <MenuItem value="CHF">Frank Szwajcarski</MenuItem>
           </Select>
+        </FormControl>
+        <FormControl margin="normal" fullWidth variant="outlined">
+          <Tooltip
+            placement="top-start"
+            title="Ustawienie słoika jako domyśly spowoduje, że kwoty które nie zostaną przyporządkowane do żadnego słoika trafią tutaj"
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={jar.isDefault}
+                  onChange={event =>
+                    setJar({ ...jar, isDefault: event.target.checked })
+                  }
+                  name="jason"
+                />
+              }
+              label="Ustaw jako domyślny"
+            />
+          </Tooltip>
         </FormControl>
         <FormControl margin="normal" fullWidth variant="outlined">
           <Button
@@ -84,6 +107,10 @@ const AddJar = () => {
       </form>
     </Grid>
   );
+};
+
+AddJar.propTypes = {
+  history: PropTypes.object.isRequired
 };
 
 export default AddJar;

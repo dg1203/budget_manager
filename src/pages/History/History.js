@@ -3,10 +3,8 @@ import { useSelector } from "react-redux";
 import { getAllHistory } from "../../services";
 import EnhancedTable from "../../components/EnhancedTable";
 import {
-  Checkbox,
   FormControl,
   InputLabel,
-  ListItemText,
   MenuItem,
   Select
 } from "@material-ui/core";

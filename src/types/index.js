@@ -2,3 +2,4 @@ export const ADD_JAR = "ADD_JAR";
 export const ADD_RESOURCES = "ADD_RESOURCES";
 export const REMOVE_RESOURCES = "REMOVE_RESOURCES";
 export const TRANSFER_RESOURCES = "TRANSFER_RESOURCES";
+export const SET_MESSAGE = "SET_MESSAGE";

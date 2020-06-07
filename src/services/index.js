@@ -1,7 +1,7 @@
 const logsDescriptions = {
   ADD_JAR: "Dodanie słoika",
   ADD_RESOURCES: "Dodanie środków do słoika",
-  REMOVE_RESOURCES: "Wyjęcie środków ze słoika",
+  REMOVE_RESOURCES: "Wypłata środków",
   TRANSFER_RESOURCES_FROM: "Transfer ze słoika",
   TRANSFER_RESOURCES_TO: "Transfer do słoika"
 };
@@ -23,24 +23,53 @@ const addLog = (id, type, ...rest) => ({
 const addResource = (jarsState, id, resource) => {
   const jars = jarsState.map(jar => {
     if (jar.id === id) {
-      jar.resources.push({ id: randomId(), ...resource });
+      if (jar.resources.length === 0) {
+        jar.resources.push({
+          [resource.currency]: parseFloat(resource.amount)
+        });
+      } else {
+        let found = false;
+        jar.resources = jar.resources.map(res => {
+          const object = Object.entries(res)[0];
+          const [key, value] = object;
+          console.log(key, resource.currency)
+          if (key === resource.currency) {
+            res = {
+              [resource.currency]:
+                parseFloat(value) + parseFloat(resource.amount)
+            };
+            found = true;
+          }
+          return res;
+        });
+        if (!found) {
+          jar.resources.push({
+            [resource.currency]: parseFloat(resource.amount)
+          });
+        }
+      }
     }
     return jar;
   });
   return jars;
 };
 
-const removeResource = (jars, resourceId, jarId) => {
-  const jar = jars.find(jar => jar.id === jarId);
-  const { resources } = jar;
-  const newResources = resources.filter(resource => resource.id !== resourceId);
-  const newJars = jars.map(jar => {
+const removeResource = (jarsState, currency, amount, jarId) => {
+  const jars = jarsState.map(jar => {
     if (jar.id === jarId) {
-      jar.resources = newResources;
+      jar.resources.forEach(res => {
+        res[currency] -= parseFloat(amount);
+      });
     }
     return jar;
   });
-  return newJars;
+  return jars;
+};
+
+const transferResources = (jarState, amount, currency, jarId, targetId) => {
+  const newJars = addResource(jarState, targetId, { currency, amount });
+  const newestJars = removeResource(newJars, currency, amount, jarId);
+  return newestJars;
 };
 
 const getJarHistory = (logs, jarId) => {
@@ -55,6 +84,7 @@ const getJarHistory = (logs, jarId) => {
     { id: "description", numeric: false, disablePadding: false, label: "Opis" },
     { id: "title", numeric: false, disablePadding: false, label: "Tytuł" },
     { id: "amount", numeric: false, disablePadding: false, label: "Kwota" },
+    { id: "currency", numeric: false, disablePadding: false, label: "Waluta" },
     {
       id: "time",
       numeric: false,
@@ -69,6 +99,7 @@ const getJarHistory = (logs, jarId) => {
         description: log.description,
         title: log[0],
         amount: log[1],
+        currency: log[2],
         time: log.time
       });
     }
@@ -124,26 +155,12 @@ const getFormatDate = time => {
   return date.toLocaleString();
 };
 
-const getAvailableJars = (jars, resource, jarId) => {
+const getAvailableJars = (jars, currency, jarId) => {
   const availableJars = jars.filter(
     jar =>
-      jar.id !== jarId &&
-      (jar.currency === resource.currency || jar.currency === "")
+      jar.id !== jarId && (jar.currency === currency || jar.currency === "")
   );
   return availableJars;
-};
-
-const transferResources = (jars, resource, jarId, targetId) => {
-  const newJars = jars.map(jar => {
-    if (jar.id === jarId) {
-      jar.resources = jar.resources.filter(res => res.id !== resource.id);
-    }
-    if (jar.id === targetId) {
-      jar.resources.push(resource);
-    }
-    return jar;
-  });
-  return newJars;
 };
 
 export {

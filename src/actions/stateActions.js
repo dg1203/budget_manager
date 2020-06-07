@@ -2,6 +2,7 @@ import {
   ADD_JAR,
   ADD_RESOURCES,
   REMOVE_RESOURCES,
+  SET_MESSAGE,
   TRANSFER_RESOURCES
 } from "../types";
 
@@ -25,4 +26,9 @@ const transferResources = payload => ({
   payload
 });
 
-export { addJar, addResource, removeResource, transferResources };
+const setMessage = payload => ({
+  type: SET_MESSAGE,
+  payload
+});
+
+export { addJar, addResource, removeResource, transferResources, setMessage };

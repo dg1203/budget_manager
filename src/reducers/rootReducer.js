@@ -2,14 +2,22 @@ import {
   ADD_JAR,
   ADD_RESOURCES,
   REMOVE_RESOURCES,
-  TRANSFER_RESOURCES
+  TRANSFER_RESOURCES,
+  SET_MESSAGE
 } from "../types";
-import { randomId, addLog, addResource, removeResource, transferResources } from "../services";
+import {
+  randomId,
+  addLog,
+  addResource,
+  removeResource,
+  transferResources
+} from "../services";
 
 const initialState = {
   jars: [],
   logs: [],
-  defaultJar: ""
+  defaultJar: "",
+  message: null
 };
 
 export default function(state = initialState, action) {
@@ -22,39 +30,48 @@ export default function(state = initialState, action) {
         ...state,
         jars: [...state.jars, { ...jar }],
         logs: [...state.logs, addLog(id, action.type)],
-        defaultJar: isDefault ? id : state.defaultJar
+        defaultJar: isDefault ? id : state.defaultJar,
+        message: `Dodano nowy słoik: ${jar.name}`
       };
     }
     case ADD_RESOURCES: {
       const { payload } = action;
       const { id, resource } = payload;
-      const { title, amount } = resource;
+      const { title, amount, currency } = resource;
       return {
         ...state,
         jars: addResource(state.jars, id, resource),
-        logs: [...state.logs, addLog(id, action.type, title, amount)]
+        logs: [...state.logs, addLog(id, action.type, title, amount, currency)],
+        message: `Dodano nową operację: ${title} - ${amount}`
       };
     }
     case REMOVE_RESOURCES: {
-      const { resource, jarId } = action.payload;
-      const { id, title, amount } = resource;
+      const { currency, amount, jarId } = action.payload;
       return {
         ...state,
-        jars: removeResource(state.jars, id, jarId),
-        logs: [...state.logs, addLog(jarId, action.type, title, amount)]
+        jars: removeResource(state.jars, currency, amount, jarId),
+        logs: [...state.logs, addLog(jarId, action.type, "Wypłata", amount, currency)],
+        message: `Wyjęto środki ze słoika: ${amount}`
       };
     }
     case TRANSFER_RESOURCES: {
-      const { resource, jarId, targetId } = action.payload;
-      const { title, amount } = resource;
+      const { amount, currency , jarId, targetId } = action.payload;
       return {
         ...state,
-        jars: transferResources(state.jars, resource, jarId, targetId),
+        jars: transferResources(state.jars, amount, currency , jarId, targetId),
         logs: [
           ...state.logs,
-          addLog(jarId, `${TRANSFER_RESOURCES}_FROM`, title, amount),
-          addLog(targetId, `${TRANSFER_RESOURCES}_TO`, title, amount)
-        ]
+          addLog(jarId, `${TRANSFER_RESOURCES}_FROM`, "Transfer", amount, currency),
+          addLog(targetId, `${TRANSFER_RESOURCES}_TO`, "Transfer", amount, currency)
+        ],
+        message: `Transfer środków zakończony sukcesem`
+      };
+    }
+    case SET_MESSAGE: {
+      const { message } = action.payload;
+      return {
+        ...state,
+        message
       };
     }
     default:

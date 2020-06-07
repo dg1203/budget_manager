@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  Slide,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+  TextField
+} from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Slide from "@material-ui/core/Slide";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { getAvailableJars } from "../../services";
-import { InputLabel, MenuItem, Select } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { transferResources } from "../../actions/stateActions";
 
@@ -17,24 +23,27 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const TransferDialog = ({ open, openDialog, resource, jarId }) => {
+const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
   const dispatch = useDispatch();
   const { jars } = useSelector(state => state);
   const [targetId, setTargetId] = useState("");
-  const availableJars = resource ? getAvailableJars(jars, resource, jarId) : [];
+  const [paymentAmount, setPaymentAmount] = useState(0);
+  const availableJars = currency ? getAvailableJars(jars, currency, jarId) : [];
   const onSave = () => {
-    if (targetId !== '') {
-      dispatch(transferResources({
-        resource,
-        jarId,
-        targetId
-      }));
+    if (targetId !== "") {
+      dispatch(
+        transferResources({
+          jarId,
+          targetId,
+          currency,
+          amount: paymentAmount
+        })
+      );
       openDialog(false);
     }
   };
   return (
-    open &&
-    resource && (
+    open && (
       <div>
         <Dialog
           open={open}
@@ -52,26 +61,42 @@ const TransferDialog = ({ open, openDialog, resource, jarId }) => {
               Wybierz słoik do którego chcesz przenieść wybrane środki. Poniżej
               lista dostępnych słoików dla tej operacji.
             </DialogContentText>
-            <DialogContentText id="alert-dialog-slide-description">
-              Tutuł operacji: {resource.title}
-              <br />
-              Kwota: {resource.amount}
-            </DialogContentText>
             {availableJars.length === 0 ? (
-              <h1>Brak</h1>
+              <Typography variant="h5" component="h5">
+                Brak słoików dla których można wykonać operację
+              </Typography>
             ) : (
-              <FormControl margin="normal" fullWidth variant="outlined">
-                <InputLabel>Waluta</InputLabel>
-                <Select
-                  value={targetId}
-                  onChange={event => setTargetId(event.target.value)}
-                  required
-                >
-                  {availableJars.map(jar => (
-                    <MenuItem value={jar.id}>{jar.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <>
+                <FormControl margin="normal" fullWidth variant="outlined">
+                  <TextField
+                    value={paymentAmount}
+                    onChange={event =>
+                      setPaymentAmount(
+                        parseFloat(event.target.value) > 0 &&
+                          parseFloat(event.target.value) <= parseFloat(amount)
+                          ? event.target.value
+                          : paymentAmount
+                      )
+                    }
+                    label="Kwota"
+                    variant="outlined"
+                    type="number"
+                    required
+                  />
+                </FormControl>
+                <FormControl margin="normal" fullWidth variant="outlined">
+                  <InputLabel>Docelowy słoik</InputLabel>
+                  <Select
+                    value={targetId}
+                    onChange={event => setTargetId(event.target.value)}
+                    required
+                  >
+                    {availableJars.map(jar => (
+                      <MenuItem value={jar.id}>{jar.name}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </>
             )}
           </DialogContent>
           <DialogActions>
@@ -91,7 +116,8 @@ const TransferDialog = ({ open, openDialog, resource, jarId }) => {
 TransferDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   openDialog: PropTypes.func.isRequired,
-  resource: PropTypes.object.isRequired,
+  currency: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
   jarId: PropTypes.string.isRequired
 };
 

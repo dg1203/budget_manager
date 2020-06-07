@@ -28,7 +28,7 @@ const PaymentDialog = ({ currency, amount, jarId, open, openDialog }) => {
         amount: paymentAmount
       })
     );
-    setPaymentAmount(0)
+    setPaymentAmount(0);
     openDialog(false);
   };
   return (
@@ -81,7 +81,6 @@ const PaymentDialog = ({ currency, amount, jarId, open, openDialog }) => {
 PaymentDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   openDialog: PropTypes.func.isRequired,
-  resource: PropTypes.object.isRequired,
   jarId: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired

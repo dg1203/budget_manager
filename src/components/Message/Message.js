@@ -31,7 +31,7 @@ const Message = ({ message }) => {
   }, []);
   return (
     <div className={classes.root}>
-      <Alert severity="success" color="info">
+      <Alert severity="success" variant="filled">
         {message}
       </Alert>
     </div>

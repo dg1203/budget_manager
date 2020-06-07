@@ -38,6 +38,7 @@ export default function(state = initialState, action) {
       const { payload } = action;
       const { id, resource } = payload;
       const { title, amount, currency } = resource;
+      console.log(resource);
       return {
         ...state,
         jars: addResource(state.jars, id, resource),
@@ -50,19 +51,34 @@ export default function(state = initialState, action) {
       return {
         ...state,
         jars: removeResource(state.jars, currency, amount, jarId),
-        logs: [...state.logs, addLog(jarId, action.type, "Wypłata", amount, currency)],
+        logs: [
+          ...state.logs,
+          addLog(jarId, action.type, "Wypłata", amount, currency)
+        ],
         message: `Wyjęto środki ze słoika: ${amount}`
       };
     }
     case TRANSFER_RESOURCES: {
-      const { amount, currency , jarId, targetId } = action.payload;
+      const { amount, currency, jarId, targetId } = action.payload;
       return {
         ...state,
-        jars: transferResources(state.jars, amount, currency , jarId, targetId),
+        jars: transferResources(state.jars, amount, currency, jarId, targetId),
         logs: [
           ...state.logs,
-          addLog(jarId, `${TRANSFER_RESOURCES}_FROM`, "Transfer", amount, currency),
-          addLog(targetId, `${TRANSFER_RESOURCES}_TO`, "Transfer", amount, currency)
+          addLog(
+            jarId,
+            `${TRANSFER_RESOURCES}_FROM`,
+            "Transfer",
+            amount,
+            currency
+          ),
+          addLog(
+            targetId,
+            `${TRANSFER_RESOURCES}_TO`,
+            "Transfer",
+            amount,
+            currency
+          )
         ],
         message: `Transfer środków zakończony sukcesem`
       };

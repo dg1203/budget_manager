@@ -38,7 +38,7 @@ const AddResource = ({ history }) => {
           )
         : jars;
     setAvailablJars(availableJars);
-  }, [resource.currency]);
+  }, [resource]);
   const onSave = event => {
     event.preventDefault();
     const selectedJar =
@@ -48,7 +48,7 @@ const AddResource = ({ history }) => {
     } else {
       saveSplitPayment();
     }
-    history.push('/');
+    history.push("/");
   };
   const saveResource = id => {
     dispatch(
@@ -73,7 +73,7 @@ const AddResource = ({ history }) => {
       const splitResource = {
         title: resource.title,
         amount: jar.amount,
-        currency: jar.currency
+        currency: resource.currency
       };
       dispatch(
         addResource({

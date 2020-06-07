@@ -100,7 +100,9 @@ const SplitPayment = ({ availableJars, amount, setSplitJars }) => {
               <TextField
                 disabled={amount === 0}
                 value={jar.percent}
-                onChange={event => setValue(index, event.target.value ? event.target.value : 0)}
+                onChange={event =>
+                  setValue(index, event.target.value ? event.target.value : 0)
+                }
                 type="number"
                 label="Wartość procentowa słoika"
                 variant="outlined"

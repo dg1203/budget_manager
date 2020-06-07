@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAllHistory } from "../../services";
 import EnhancedTable from "../../components/EnhancedTable";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select
-} from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
 const History = () => {
   const { jars, logs } = useSelector(state => state);

@@ -32,7 +32,6 @@ const addResource = (jarsState, id, resource) => {
         jar.resources = jar.resources.map(res => {
           const object = Object.entries(res)[0];
           const [key, value] = object;
-          console.log(key, resource.currency)
           if (key === resource.currency) {
             res = {
               [resource.currency]:
@@ -57,8 +56,11 @@ const addResource = (jarsState, id, resource) => {
 const removeResource = (jarsState, currency, amount, jarId) => {
   const jars = jarsState.map(jar => {
     if (jar.id === jarId) {
-      jar.resources.forEach(res => {
+      jar.resources.forEach((res, index) => {
         res[currency] -= parseFloat(amount);
+        if (res[currency] === 0) {
+          jar.resources.splice(index, 1);
+        }
       });
     }
     return jar;

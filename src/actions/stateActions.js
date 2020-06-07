@@ -1,4 +1,9 @@
-import {ADD_JAR, ADD_RESOURCES, REMOVE_RESOURCES} from "../types";
+import {
+  ADD_JAR,
+  ADD_RESOURCES,
+  REMOVE_RESOURCES,
+  TRANSFER_RESOURCES
+} from "../types";
 
 const addJar = payload => ({
   type: ADD_JAR,
@@ -15,4 +20,9 @@ const removeResource = payload => ({
   payload
 });
 
-export { addJar, addResource, removeResource };
+const transferResources = payload => ({
+  type: TRANSFER_RESOURCES,
+  payload
+});
+
+export { addJar, addResource, removeResource, transferResources };

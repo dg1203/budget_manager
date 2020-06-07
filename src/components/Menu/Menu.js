@@ -25,13 +25,13 @@ const Menu = ({ open, setOpen, history }) => {
           </ListItemIcon>
           <ListItemText primary="Nowy słoik" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => openPage("/resource/add")}>
           <ListItemIcon>
             <AccountBalanceWalletIcon />
           </ListItemIcon>
           <ListItemText primary="Nowa wpłata" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => openPage("/history")}>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>

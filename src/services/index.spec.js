@@ -6,7 +6,6 @@ import {
   getJarHistory,
   getFormatDate,
   getAvailableJars,
-  transferResources,
   getAllHistory
 } from "./index";
 

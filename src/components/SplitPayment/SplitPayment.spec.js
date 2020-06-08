@@ -1,9 +1,8 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import SplitPayment from "./SplitPayment";
 import store from "../../store";
-import PaymentDialog from "../PaymentDialog";
 
 const defaultProps = {
   availableJars: [

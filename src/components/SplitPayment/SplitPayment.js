@@ -56,7 +56,7 @@ const SplitPayment = ({ availableJars, amount, setSplitJars }) => {
       setChoosedJars(jars);
       setSplitJars(jars);
       const sumAmount = jars.reduce(
-        (prevValue, jar, idx) => parseFloat(prevValue) + parseFloat(jar.amount),
+        (prevValue, jar) => parseFloat(prevValue) + parseFloat(jar.amount),
         0
       );
       const sumAmountParsed = parseFloat(
@@ -120,17 +120,18 @@ const SplitPayment = ({ availableJars, amount, setSplitJars }) => {
         })}
       <FormControl margin="normal" fullWidth variant="outlined">
         {defaultJar === "" ? (
-          <Typography>
+          <Typography data-testid="info-notdefaultjar">
             Nie posiadasz domyślnego słoika - cała kwota musi zostać
             rozdysponowana.
           </Typography>
         ) : (
-          <Typography>
+          <Typography data-testid="info-defaultjar">
             Kwota nierozdysponowana trafi do domyślnego słoika.
           </Typography>
         )}
 
         <Button
+          data-testid="save-button"
           disabled={
             (parseFloat(sumAmount) > 0 && defaultJar === "") || amount === 0
           }

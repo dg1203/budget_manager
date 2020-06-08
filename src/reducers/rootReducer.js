@@ -29,7 +29,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         jars: [...state.jars, { ...jar }],
-        logs: [...state.logs, addLog(id, action.type)],
+        logs: [...state.logs, addLog(id, action.type, jar.name)],
         defaultJar: isDefault ? id : state.defaultJar,
         message: `Dodano nowy słoik: ${jar.name}`
       };
@@ -38,7 +38,6 @@ export default function(state = initialState, action) {
       const { payload } = action;
       const { id, resource } = payload;
       const { title, amount, currency } = resource;
-      console.log(resource);
       return {
         ...state,
         jars: addResource(state.jars, id, resource),

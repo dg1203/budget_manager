@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import { addResource } from "../../actions/stateActions";
+import { getAvailableJars } from "../../services";
 
 const AddResource = ({ history }) => {
   const dispatch = useDispatch();
@@ -31,12 +32,7 @@ const AddResource = ({ history }) => {
     currency: ""
   });
   useEffect(() => {
-    const availableJars =
-      resource.currency !== ""
-        ? jars.filter(
-            jar => jar.currency === resource.currency || jar.currency === ""
-          )
-        : jars;
+    const availableJars = getAvailableJars(resource.currency);
     setAvailablJars(availableJars);
   }, [resource]);
   const onSave = event => {

@@ -21,7 +21,7 @@ const History = () => {
             <em>Brak</em>
           </MenuItem>
           {jars.map(jar => (
-            <MenuItem value={jar.id}>{jar.name}</MenuItem>
+            <MenuItem key={jar.id} value={jar.id}>{jar.name}</MenuItem>
           ))}
         </Select>
       </FormControl>

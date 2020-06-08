@@ -83,7 +83,7 @@ PaymentDialog.propTypes = {
   openDialog: PropTypes.func.isRequired,
   jarId: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default PaymentDialog;

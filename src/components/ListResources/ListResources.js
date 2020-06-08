@@ -39,11 +39,11 @@ const ListResources = ({ resources, jarId }) => {
   ) : (
     <>
       <List dense={false}>
-        {resources.map(resource => {
+        {resources.map((resource, index) => {
           const res = Object.entries(resource)[0];
           const [key, value] = res;
           return (
-            <ListItem key={resource.id}>
+            <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>
                   <FolderIcon />

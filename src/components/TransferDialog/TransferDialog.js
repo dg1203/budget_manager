@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Dialog,
@@ -28,7 +28,11 @@ const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
   const { jars } = useSelector(state => state);
   const [targetId, setTargetId] = useState("");
   const [paymentAmount, setPaymentAmount] = useState(0);
-  const availableJars = currency ? getAvailableJars(jars, currency, jarId) : [];
+  const [availableJars, setAvailableJars] = useState([]);
+  useEffect(() => {
+    const avJars = getAvailableJars(jars, currency, jarId);
+    setAvailableJars(avJars);
+  }, [currency])
   const onSave = () => {
     if (targetId !== "") {
       dispatch(
@@ -92,7 +96,9 @@ const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
                     required
                   >
                     {availableJars.map(jar => (
-                      <MenuItem value={jar.id}>{jar.name}</MenuItem>
+                      <MenuItem key={jar.id} value={jar.id}>
+                        {jar.name}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
@@ -117,7 +123,7 @@ TransferDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   openDialog: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   jarId: PropTypes.string.isRequired
 };
 

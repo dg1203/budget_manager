@@ -15,7 +15,7 @@ import FolderIcon from "@material-ui/icons/Folder";
 import RepeatIcon from "@material-ui/icons/Repeat";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import TransferDialog from "../TransferDialog";
-import PaymentDialog from "../PaymnetDialog";
+import PaymentDialog from "../PaymentDialog";
 
 const ListResources = ({ resources, jarId }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -33,7 +33,7 @@ const ListResources = ({ resources, jarId }) => {
     setOpenDialog(true);
   };
   return resources.length === 0 ? (
-    <Typography variant="h2" component="h2">
+    <Typography data-testid="info-emptyresources" variant="h2" component="h2">
       Brak środków w słoiku
     </Typography>
   ) : (
@@ -55,12 +55,16 @@ const ListResources = ({ resources, jarId }) => {
                   title="Przenieś środki do innego słoika"
                   placement="top"
                 >
-                  <IconButton onClick={() => openTransferDialog(key, value)}>
+                  <IconButton
+                    data-testid="open-transferdialog"
+                    onClick={() => openTransferDialog(key, value)}
+                  >
                     <CompareArrowsIcon />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Wyciągnij środki" placement="top">
                   <IconButton
+                    data-testid="open-paymentdialog"
                     onClick={() => openPaymentDialogMethod(key, value)}
                   >
                     <RepeatIcon />

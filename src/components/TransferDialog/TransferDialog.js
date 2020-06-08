@@ -25,30 +25,28 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
   const dispatch = useDispatch();
-  const { jars } = useSelector(state => state);
+  const { jars, defaultJar } = useSelector(state => state);
   const [targetId, setTargetId] = useState("");
   const [paymentAmount, setPaymentAmount] = useState(0);
   const [availableJars, setAvailableJars] = useState([]);
   useEffect(() => {
     const avJars = getAvailableJars(jars, currency, jarId);
     setAvailableJars(avJars);
-  }, [currency])
+  }, [currency]);
   const onSave = () => {
-    if (targetId !== "") {
-      dispatch(
-        transferResources({
-          jarId,
-          targetId,
-          currency,
-          amount: paymentAmount
-        })
-      );
-      openDialog(false);
-    }
+    dispatch(
+      transferResources({
+        jarId,
+        targetId: targetId === "" ? defaultJar : targetId,
+        currency,
+        amount: paymentAmount
+      })
+    );
+    openDialog(false);
   };
   return (
     open && (
-      <div>
+      <div data-testid="transfer-dialog">
         <Dialog
           open={open}
           TransitionComponent={Transition}
@@ -91,6 +89,7 @@ const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
                 <FormControl margin="normal" fullWidth variant="outlined">
                   <InputLabel>Docelowy słoik</InputLabel>
                   <Select
+                    data-testid="target-select"
                     value={targetId}
                     onChange={event => setTargetId(event.target.value)}
                     required
@@ -106,10 +105,14 @@ const TransferDialog = ({ open, openDialog, currency, amount, jarId }) => {
             )}
           </DialogContent>
           <DialogActions>
-            <Button onClick={onSave} color="primary">
+            <Button data-testid="save-button" onClick={onSave} color="primary">
               Zapisz
             </Button>
-            <Button onClick={() => openDialog(false)} color="primary">
+            <Button
+              data-testid="close-button"
+              onClick={() => openDialog(false)}
+              color="primary"
+            >
               Anuluj
             </Button>
           </DialogActions>

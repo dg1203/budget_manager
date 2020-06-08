@@ -32,7 +32,7 @@ const AddResource = ({ history }) => {
     currency: ""
   });
   useEffect(() => {
-    const availableJars = getAvailableJars(resource.currency);
+    const availableJars = getAvailableJars(jars, resource.currency, jar);
     setAvailablJars(availableJars);
   }, [resource]);
   const onSave = event => {
@@ -98,7 +98,7 @@ const AddResource = ({ history }) => {
         Dodaj środki
       </Typography>
       {jars.length === 0 ? (
-        <Typography variant="h5" component="h5" gutterBottom>
+        <Typography data-testid="information" variant="h5" component="h5" gutterBottom>
           Aby dokonać wpłaty musisz najpierw dodać przynajmniej jeden słoik
         </Typography>
       ) : (

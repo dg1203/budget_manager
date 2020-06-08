@@ -35,7 +35,11 @@ const AddJar = ({ history }) => {
       <Typography variant="h4" component="h4" gutterBottom>
         Nowy słoik
       </Typography>
-      <form autoComplete="off" onSubmit={event => saveJar(event)}>
+      <form
+        data-testid="form"
+        autoComplete="off"
+        onSubmit={event => saveJar(event)}
+      >
         <FormControl margin="normal" fullWidth variant="outlined">
           <TextField
             onChange={event => setJar({ ...jar, name: event.target.value })}

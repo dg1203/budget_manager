@@ -33,8 +33,9 @@ const PaymentDialog = ({ currency, amount, jarId, open, openDialog }) => {
   };
   return (
     open && (
-      <div>
+      <div data-testid="payment-dialog">
         <Dialog
+          data-testid="dialog"
           open={open}
           TransitionComponent={Transition}
           keepMounted
@@ -65,10 +66,14 @@ const PaymentDialog = ({ currency, amount, jarId, open, openDialog }) => {
             </FormControl>
           </DialogContent>
           <DialogActions>
-            <Button onClick={onSave} color="primary">
+            <Button data-testid="save-button" onClick={onSave} color="primary">
               Zapisz
             </Button>
-            <Button onClick={() => openDialog(false)} color="primary">
+            <Button
+              data-testid="close-button"
+              onClick={() => openDialog(false)}
+              color="primary"
+            >
               Anuluj
             </Button>
           </DialogActions>
@@ -83,7 +88,7 @@ PaymentDialog.propTypes = {
   openDialog: PropTypes.func.isRequired,
   jarId: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
-  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
 };
 
 export default PaymentDialog;

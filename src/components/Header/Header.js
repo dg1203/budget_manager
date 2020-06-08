@@ -13,6 +13,7 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            data-testid="open-button"
             onClick={() => setOpen(true)}
             edge="start"
             color="inherit"

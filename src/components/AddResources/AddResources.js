@@ -40,9 +40,10 @@ const AddResources = ({ currency, jarId }) => {
       <Typography variant="h4" component="h4" gutterBottom>
         Dodaj środki
       </Typography>
-      <form autoComplete="off" onSubmit={onSave}>
+      <form autoComplete="off" onSubmit={onSave} data-testid="form">
         <FormControl margin="normal" fullWidth variant="outlined">
           <TextField
+            data-testid="title-field"
             value={resource.title}
             onChange={event =>
               setResource({ ...resource, title: event.target.value })
@@ -54,6 +55,7 @@ const AddResources = ({ currency, jarId }) => {
         </FormControl>
         <FormControl margin="normal" fullWidth variant="outlined">
           <TextField
+            data-testid="field"
             value={resource.amount}
             onChange={event =>
               setResource({ ...resource, amount: event.target.value })
@@ -67,6 +69,7 @@ const AddResources = ({ currency, jarId }) => {
         <FormControl margin="normal" fullWidth variant="outlined">
           <InputLabel>Waluta</InputLabel>
           <Select
+            data-testid="field"
             disabled={currency !== ""}
             value={resource.currency}
             onChange={event =>

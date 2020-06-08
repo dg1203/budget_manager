@@ -126,7 +126,8 @@ const getAllHistory = (logs, selectedJar) => {
       label: "Data operacji"
     },
     { id: "title", numeric: false, disablePadding: false, label: "Tytuł" },
-    { id: "amount", numeric: false, disablePadding: false, label: "Kwota" }
+    { id: "amount", numeric: false, disablePadding: false, label: "Kwota" },
+    { id: "currency", numeric: false, disablePadding: false, label: "Waluta" }
   ];
   logs.forEach(log => {
     if (selectedJar !== "") {
@@ -136,7 +137,8 @@ const getAllHistory = (logs, selectedJar) => {
           description: log.description,
           time: log.time,
           title: log[0] ? log[0] : "",
-          amount: log[1] ? log[1] : ""
+          amount: log[1] ? log[1] : "",
+          currency: log[2] ? log[2] : ""
         });
       }
     } else {
@@ -145,7 +147,8 @@ const getAllHistory = (logs, selectedJar) => {
         description: log.description,
         time: log.time,
         title: log[0] ? log[0] : "",
-        amount: log[1] ? log[1] : ""
+        amount: log[1] ? log[1] : "",
+        currency: log[2] ? log[2] : ""
       });
     }
   });

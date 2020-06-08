@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JarsList component renders the component 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <h2
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-h5"
+              >
+                Name 2
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Jar 1
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-body2"
+              >
+                Elementów w słoiku: 
+                0
+                <br />
+                Waluta: PLN
+              </p>
+              <a
+                class="makeStyles-margin-1"
+                href="/jar/edit/3xzty3489"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-fullWidth"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Więcej
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <h2
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-h5"
+              >
+                Name 2
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Jar 2
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-margin-1 MuiTypography-body2"
+              >
+                Elementów w słoiku: 
+                1
+                <br />
+                
+              </p>
+              <a
+                class="makeStyles-margin-1"
+                href="/jar/edit/3xsty3489"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-fullWidth"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Więcej
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <div
+            class="MuiCardContent-root"
+          >
+            <h2
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-h5"
+            >
+              Name 2
+            </h2>
+            <p
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-body1 MuiTypography-colorTextSecondary"
+            >
+              Jar 1
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-body2"
+            >
+              Elementów w słoiku: 
+              0
+              <br />
+              Waluta: PLN
+            </p>
+            <a
+              class="makeStyles-margin-1"
+              href="/jar/edit/3xzty3489"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-fullWidth"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Więcej
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4"
+      >
+        <div
+          class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <div
+            class="MuiCardContent-root"
+          >
+            <h2
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-h5"
+            >
+              Name 2
+            </h2>
+            <p
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-body1 MuiTypography-colorTextSecondary"
+            >
+              Jar 2
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-margin-1 MuiTypography-body2"
+            >
+              Elementów w słoiku: 
+              1
+              <br />
+              
+            </p>
+            <a
+              class="makeStyles-margin-1"
+              href="/jar/edit/3xsty3489"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-fullWidth"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Więcej
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

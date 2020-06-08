@@ -28,6 +28,7 @@ const Jar = () => {
       </Typography>
       <AppBar position="static">
         <Tabs
+          data-testid="tabs"
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"

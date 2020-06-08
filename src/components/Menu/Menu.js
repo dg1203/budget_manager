@@ -19,19 +19,31 @@ const Menu = ({ open, setOpen, history }) => {
   return (
     <Drawer open={open} onClose={() => setOpen(false)}>
       <List component="nav">
-        <ListItem button onClick={() => openPage("/jar/add")}>
+        <ListItem
+          data-testid="list-item"
+          button
+          onClick={() => openPage("/jar/add")}
+        >
           <ListItemIcon>
             <AddCircleIcon />
           </ListItemIcon>
           <ListItemText primary="Nowy słoik" />
         </ListItem>
-        <ListItem button onClick={() => openPage("/resource/add")}>
+        <ListItem
+          data-testid="list-item"
+          button
+          onClick={() => openPage("/resource/add")}
+        >
           <ListItemIcon>
             <AccountBalanceWalletIcon />
           </ListItemIcon>
           <ListItemText primary="Nowa wpłata" />
         </ListItem>
-        <ListItem button onClick={() => openPage("/history")}>
+        <ListItem
+          data-testid="list-item"
+          button
+          onClick={() => openPage("/history")}
+        >
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
